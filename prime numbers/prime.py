@@ -80,16 +80,3 @@ class Prime(object):
         print(self.get_nth_prime(n))
 
 
-test = Prime()
-test.is_prime(300007)
-
-
-
-
-
-
-
-
-
-        
-        
