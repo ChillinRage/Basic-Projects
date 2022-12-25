@@ -19,13 +19,16 @@ class Prime(object):
             self.generate_n_primes(n)
         return self.primelist[n - 1]
 
+    #check if number is prime
     def is_prime(self, num):
         #add more prime numbers if num is bigger
         if self.max < num:
             self.generate_prime(num)
 
         return self.searchlist[num] == '1'
-    def is_prime_slow(self, num):  #for checking new prime numbers
+
+    #for checking new prime numbers
+    def is_prime_slow(self, num):
         for n in self.primelist:
             n = int(n)
             if n ** 2 > num:  #only loop up to sqrt of num
@@ -36,7 +39,8 @@ class Prime(object):
 
         return True #is prime
 
-    def generate_prime(self, end):  #add primes up to end
+    #add prime numbers up to end
+    def generate_prime(self, end):
         while self.max < end:
             self.max += 1
             if self.is_prime_slow(self.max): #add to file and list
@@ -50,17 +54,21 @@ class Prime(object):
         file = open('misc data.txt', 'w')
         file.write(str(self.max) + ',' + str(self.len))
         file.close()
-    def generate_n_primes(self, n):  #add number of primes up to n
+
+    #add number of primes up to n number in file.
+    def generate_n_primes(self, n): 
         while self.len < n:
             self.generate_prime(self.max + 1)
 
-
+    #add new prime number into txt file
     def add_prime(self, num):
         file = open('prime numbers.txt', 'a')
         file.write(',' + str(num))
         file.close()
 
         self.primelist.append(num)
+
+    #extend binary primes.txt file with new/larger numbers
     def extend_search(self, n):
         file = open('binary primes.txt', 'a')
         file.write(str(n))
@@ -68,14 +76,19 @@ class Prime(object):
         
         self.searchlist.append(n)
 
-    def display_n_primes(self, n): #display first n prime numbers
+    #display first n prime numbers
+    def display_n_primes(self, n):
         if self.len < n:   #not enough primes in list
             self.generate_n_primes(n)
             
         for i in range(n):
             print(self.primelist[i])
+
+    #display current largest prime number in file
     def display_largest_prime(self):
         print(self.get_largest_prime())
+
+    #display nth prime number
     def display_nth_prime(self, n):
         print(self.get_nth_prime(n))
 
