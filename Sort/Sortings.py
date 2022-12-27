@@ -100,7 +100,30 @@ def Merge_sort(arr):
             right += 1
 
     return arr
-            
+
+# this sort is under the assumption that the values of the arr are:
+# numerical and all non-negative integers
+def Counting_sort(arr, reverse = False):
+    maxm   = -1
+    length = 0
+    for num in arr:
+        length += 1
+        maxm = max(maxm, num)
+
+    key = [0 for i in range(maxm + 1)]
+    for num in arr:
+        key[num] += 1
+
+    current = 0
+    for i in range(length):
+        while key[current] == 0:
+            current += 1
+        arr[i] = current
+        key[current] -= 1
+
+    if reverse:
+        reverse_arr(arr)
+                   
 #=======================================================
 #=======================================================
             
@@ -126,6 +149,13 @@ def test_quick():
 def test_merge():
     arr = [4,6,3,5,1,3,4,0]
     Merge_sort(arr)
+    print(arr)
+   
+def test_count():
+    arr = [4,6,3,5,1,3,4,0]
+    Counting_sort(arr)
+    print(arr)
+    Counting_sort(arr, True)
     print(arr)
 #=======================================================
 #=======================================================
