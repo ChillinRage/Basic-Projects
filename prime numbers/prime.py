@@ -1,11 +1,11 @@
 class Prime(object):
     def __init__(self):
         file = open('prime numbers.txt', 'r')
-        self.primelist = file.read().split(',')
+        self.primelist = list(map(int, file.read().split(',')))
         file.close()
 
         file = open('binary primes.txt', 'r')
-        self.searchlist = list(file.read())
+        self.searchlist = list(map(int, list(file.read())))
         file.close()
 
         file = open('misc data.txt', 'r')
@@ -19,62 +19,110 @@ class Prime(object):
             self.generate_n_primes(n)
         return self.primelist[n - 1]
 
+
     #check if number is prime
     def is_prime(self, num):
+        
         #add more prime numbers if num is bigger
         if self.max < num:
-            self.generate_prime(num)
+            self.generate_prime_SOF(num)
 
-        return self.searchlist[num] == '1'
+        return self.searchlist[num] == 1
 
-    #for checking new prime numbers
-    def is_prime_slow(self, num):
-        for n in self.primelist:
-            n = int(n)
-            if n ** 2 > num:  #only loop up to sqrt of num
+
+    #add prime numbers up to end  ver. SOF
+    def generate_prime_SOF(self, end):
+        if self.max >= end:  #current max exceed end
+            return
+
+        arr = [1 for i in range(end - self.max)]
+        for num in self.primelist:
+            if (num * num) > end:  #number too big to have anymore composites
                 break
+            
+            if (self.max + 1) % num == 0:
+                count = (self.max + 1) // num
+            else:
+                count = ((self.max + 1) // num) + 1
+                
+            while (count * num) <= end:
+                arr[count * num - self.max - 1] = 0
+                count += 1
 
-            if num % n == 0:  #divisible
-                return False
+        for i in range(end - self.max):
+            if arr[i] == 1:
+                num = self.max + 1 + i
+                self.add_prime(num)
+                self.extend_search(1)
 
-        return True #is prime
+                if (num * num) <= end:
+                    for n in range(num * num, end + 1, num):
+                        arr[n - self.max - 1] = 0
+            else:
+                self.extend_search(0)
 
-    #add prime numbers up to end
+        self.max = end
+        self.update_misc()
+
+    #add prime numbers up to end  ver. Lazy
     def generate_prime(self, end):
-        while self.max < end:
+        if self.max >= end:
+            return
+
+        if (self.max + 1) % 2 == 0:
+            self.extend_search(0) #skip even number
+            self.max += 2
+        else:
             self.max += 1
-            if self.is_prime_slow(self.max): #add to file and list
+            
+        while self.max <= end:
+            prime = True
+            for num in self.primelist:
+                if num > (int(self.max ** 0.5) + 1):
+                    break
+                if self.max % num == 0:
+                    prime = False
+                    break
+
+            if prime:
                 self.add_prime(self.max)
                 self.extend_search(1)
-                self.len += 1
-
-            else:                       #add 0 to binary list
+            else:
                 self.extend_search(0)
-        
-        file = open('misc data.txt', 'w')
-        file.write(str(self.max) + ',' + str(self.len))
-        file.close()
+                
+            self.max += 2
+            self.extend_search(0)  #skip even number
+            
+        self.max -= 1
+        self.update_misc()
 
-    #add number of primes up to n number in file.
+    #add number of primes up to total of n
     def generate_n_primes(self, n): 
         while self.len < n:
             self.generate_prime(self.max + 1)
 
-    #add new prime number into txt file
+    #add new prime number
     def add_prime(self, num):
         file = open('prime numbers.txt', 'a')
         file.write(',' + str(num))
         file.close()
 
         self.primelist.append(num)
+        self.len += 1
 
-    #extend binary primes.txt file with new/larger numbers
+    #extend binary primes.txt file and searchlist
     def extend_search(self, n):
         file = open('binary primes.txt', 'a')
         file.write(str(n))
         file.close()
         
         self.searchlist.append(n)
+
+    #update the max and len in misc txt
+    def update_misc(self):
+        file = open('misc data.txt', 'w')
+        file.write(str(self.max) + ',' + str(self.len))
+        file.close()
 
     #display first n prime numbers
     def display_n_primes(self, n):
@@ -92,4 +140,21 @@ class Prime(object):
     def display_nth_prime(self, n):
         print(self.get_nth_prime(n))
 
+    #emergency code to rebuild the binary numbers.txt
+    def rebuild_binary(self):
+        arr = [0 for i in range(self.max + 1)]
+        for num in self.primelist:
+            arr[num] = 1
 
+        self.searchlist = arr
+
+        file = open('binary primes.txt','w')
+        file.write(''.join(map(str, self.searchlist)))
+        file.close()
+        
+
+    #check if the binary txt is correct
+    def verify_binary(self):
+        for num in self.primelist:
+            if not self.searchlist[int(num)]:
+                print(num)
