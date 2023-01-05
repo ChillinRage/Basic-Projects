@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="'with-device-width, initial-scale=1.0">
+    <title>Beginner Project JS one</title>
+    <link rel='stylesheet' href='sub.css'>
+    <link rel="icon" type="img/png" href="images/bongo_cat.jpg">
+</head>
+
+<body>
+    <h1>NUS Computer Science Pathetic Record</h1>
+    <table class="record_table" id="table">
+        <tr>
+            <th>Year</th>
+            <th>Semester</th>
+            <th>Module</th>
+            <th>Grade</th>
+            <th>MC</th>
+            <th>Remark</th>
+        </tr>
+    </table>
+    <br>
+
+    <section class="new_mod">
+        <div class='add_block'>
+            <label class="new_module_label"><b>New Module</b></label>
+            <button class='delete_btn' onclick="delete_row()">Remove <br> a module</button><br>
+            <label>Year : </label><input type="text" id="year" /><br>
+            <label>Semester : </label><input type="text" id="semester" /><br>
+            <label>Module : </label><input type="text" id="module" /><br>
+            <label>Grade : </label><input type="text" id="grade" /><br>
+            <label>MC : </label><input type="text" id="mc" /><br>
+            <label>Type : </label><input type="text" id="type" />
+            <button onclick="add_row()">Add</button>
+            <br>
+        </div>
+        <div class="cap_block">
+            <label>CAP</label><br>
+            <label class="cap_label" id="cap_label">0.00</label>
+        </div>
+    </section>
+
+    <script src="Script.js"></script>
+</body>
+
+</html>
