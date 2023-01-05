@@ -9,3 +9,6 @@ These are some of my very basic projects I've tried.
 
 <br><br>
 2. Array Sorting and Searching. Just a collation of some sorting and searching algos I know of. All of them are in-place sortings. 
+
+<br><br>
+3. Academic Website I.
