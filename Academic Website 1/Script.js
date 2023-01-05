@@ -17,10 +17,18 @@ function insert_row(data) {
 }
 
 async function display() {
-    const url = 'https://github.com/ChillinRage/Basic-Projects/blob/main/Academic%20Website%201/NUS%20Acad%20results.csv';
+    const url = 'https://raw.githubusercontent.com/ChillinRage/Basic-Projects/main/Academic%20Website%201/NUS%20Acad%20results.csv';
     const response = await fetch(url);       // fetch data
     const raw_data = await response.text();  // process data
-    console.log(raw_data);
+    const rows     = raw_data.split('\r\n'); // split into rows
+    const header   = rows[0].split(',');
+    const len      = rows.length;
+
+    for (let i = 1; i < len; i++) {
+        let row = rows[i].split(',');
+        add_row(row);
+    }
 }
 
+display();
 
