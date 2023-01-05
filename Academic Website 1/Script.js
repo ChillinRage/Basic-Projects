@@ -27,7 +27,7 @@ function insert_row(data) {
 
 async function update_cap() {
     const data = await get_data();
-    const len  = data.length;
+    const len  = data.length - 1;  //ignore extra undefined row.
     let total_mc = 0;
     let points   = 0;
     
@@ -79,7 +79,7 @@ async function update_cap() {
 async function display() {
     const data   = await get_data();
     const header = data[0].split(',');
-    const len    = data.length;
+    const len    = data.length - 1;  //ignore extra undefined row.
 
     for (let i = 1; i < len; i++) {
         let row = data[i].split(',');
