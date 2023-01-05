@@ -1,4 +1,4 @@
-function get_data() {
+async function get_data() {
     const url = 'https://raw.githubusercontent.com/ChillinRage/Basic-Projects/main/Academic%20Website%201/NUS%20Acad%20results.csv';
     const response = await fetch(url);       // fetch data
     const raw_data = await response.text();  // process data
@@ -25,8 +25,8 @@ function insert_row(data) {
     remark.innerHTML = data[5];
 }
 
-function update_cap() {
-    const data = get_data();
+async function update_cap() {
+    const data = await get_data();
     const len  = data.length;
     let total_mc = 0;
     let points   = 0;
@@ -77,13 +77,13 @@ function update_cap() {
 }
 
 async function display() {
-    const data   = get_data();
+    const data   = await get_data();
     const header = data[0].split(',');
     const len    = data.length;
 
     for (let i = 1; i < len; i++) {
         let row = data[i].split(',');
-        add_row(row);
+        insert_row(row);
     }
     
     update_cap();
