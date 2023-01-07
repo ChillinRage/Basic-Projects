@@ -54,20 +54,20 @@ function get_data() {
 }
 
 function insert_row(data) {
-    var table = document.getElementById("table");
-    var row = table.insertRow();
-    var year = row.insertCell(0);
-    var sem = row.insertCell(1);
-    var mod = row.insertCell(2);
-    var grade = row.insertCell(3);
-    var mc = row.insertCell(4);
+    var table  = document.getElementById("table");
+    var row    = table.insertRow();
+    var year   = row.insertCell(0);
+    var sem    = row.insertCell(1);
+    var mod    = row.insertCell(2);
+    var grade  = row.insertCell(3);
+    var mc     = row.insertCell(4);
     var remark = row.insertCell(5);
 
-    year.innerHTML = data[0];
-    sem.innerHTML = data[1];
-    mod.innerHTML = data[2];
-    grade.innerHTML = data[3];
-    mc.innerHTML = data[4];
+    year.innerHTML   = data[0];
+    sem.innerHTML    = data[1];
+    mod.innerHTML    = data[2];
+    grade.innerHTML  = data[3];
+    mc.innerHTML     = data[4];
     remark.innerHTML = data[5];
 }
 
@@ -80,24 +80,24 @@ function isempty(word) {
 }
 
 function add_row() {
-    var year = document.querySelector('#year').value.trim();
-    var sem = document.querySelector('#semester').value.trim();
-    var mod = document.querySelector('#module').value.trim();
+    var year  = document.querySelector('#year').value.trim();
+    var sem   = document.querySelector('#semester').value.trim();
+    var mod   = document.querySelector('#module').value.trim();
     var grade = document.querySelector('#grade').value.trim();
-    var mc = document.querySelector('#mc').value.trim();
-    var type = document.querySelector('#type').value.trim();
+    var mc    = document.querySelector('#mc').value.trim();
+    var type  = document.querySelector('#type').value.trim();
 
     if (is_number(year) && is_number(sem) && is_module(mod) && is_grade(grade) && is_number(mc) && !isempty(type)) {
         const arr = [year, sem, mod, grade, mc, type];
         insert_row(arr);
         add_to_storage(arr);
 
-        document.getElementById('year').value = '';
+        document.getElementById('year').value     = '';
         document.getElementById('semester').value = '';
-        document.getElementById('module').value = '';
-        document.getElementById('grade').value = '';
-        document.getElementById('mc').value = '';
-        document.getElementById('type').value = '';
+        document.getElementById('module').value   = '';
+        document.getElementById('grade').value    = '';
+        document.getElementById('mc').value       = '';
+        document.getElementById('type').value     = '';
 
         update_cap();
     }
