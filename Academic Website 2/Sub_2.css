@@ -32,7 +32,7 @@ body {
     background-image: url(bg_watch.png);
     background-repeat: no-repeat;
     background-size: cover;
-    position: relative;
+    background-position: center;
 }
 
 .row1_block {
@@ -92,4 +92,46 @@ button {
 
 .cap_label {
     text-decoration: underline;
+}
+
+/* On ipad */
+@media (min-device-width:768px) and (max-device-width: 1024px) {
+
+    html {
+        height: 100%;
+    }
+
+    .add_block {
+        width: 50%;
+        font-size: 24px;
+    }
+
+    .add_label {
+        width: 20%;
+    }
+
+    .cap_block {
+        padding: 2%;
+    }
+}
+
+/* On smaller devices */
+@media (min-device-width:300px) and (max-device-width: 700px) {
+
+    html {
+        height: 100%;
+    }
+
+    .add_block {
+        width: 52%;
+        font-size: 20px;
+    }
+
+    .add_label {
+        width: 20%;
+    }
+
+    .cap_block {
+        padding: 2%;
+    }
 }
