@@ -10,7 +10,6 @@ h1 {
     width: 75%;
     background-color: azure;
     font-size: 25px;
-    border: 1px solid black;
 }
 
 th {
@@ -120,6 +119,21 @@ button {
 
     html {
         height: 100%;
+    }
+    
+    .record_table {
+        width: 95%;
+        font-size: 30px;
+    }
+    
+    th {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    td {
+        padding-left: 10px;
+        padding-right: 10px;
     }
 
     .add_block {
