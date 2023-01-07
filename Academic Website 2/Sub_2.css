@@ -1,0 +1,95 @@
+h1 {
+    text-align: center;
+    font-size: 45px;
+    color: azure;
+}
+
+.record_table {
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+    background-color: azure;
+    font-size: 25px;
+    border: 1px solid black;
+}
+
+th {
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-left: 30px;
+    padding-right: 30px;
+    text-decoration: underline;
+}
+
+td {
+    padding-bottom: 1em;
+    padding-left: 30px;
+    padding-right: 30px;
+    text-align: center;
+}
+
+body {
+    background-image: url(bg_watch.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.row1_block {
+    text-align: center;
+    display: flex;
+}
+
+.new_module_label {
+    padding-left: 15%;
+    text-decoration: underline solid;
+    font-size: 30px;
+}
+
+.add_block {
+    display: inline-block;
+    margin: auto;
+    width: 40%;
+    background-color: antiquewhite;
+    font-size: 25px;
+    padding: 15px;
+}
+
+.cap_block {
+    display: inline-block;
+    margin: auto;
+    background-color: rgb(103, 243, 145);
+    font-size: 40px;
+    padding: 1%;
+}
+
+.add_label {
+    width: 30%;
+    float: left;
+    text-align: right;
+    padding: 5px;
+}
+
+input {
+    float: left;
+    font-size: 20px;
+}
+
+br {
+    clear: both;
+}
+
+button {
+    float: left;
+    font-size: 20px;
+    margin-left: 15px;
+}
+
+.delete_btn {
+    font-size: 20px;
+    float: right;
+}
+
+.cap_label {
+    text-decoration: underline;
+}
