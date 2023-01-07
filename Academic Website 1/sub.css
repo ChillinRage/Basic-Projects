@@ -1,3 +1,8 @@
+html {
+    height: 100%;
+    -webkit-text-size-adjust: none;
+}
+
 h1 {
     text-align: center;
     font-size: 45px;
@@ -10,7 +15,6 @@ h1 {
     width: 75%;
     background-color: azure;
     font-size: 25px;
-    border: 1px solid black;
 }
 
 th {
@@ -32,20 +36,16 @@ body {
     background-image: url(bg_watch.png);
     background-repeat: no-repeat;
     background-size: cover;
-    position: relative;
+    background-position: center;
 }
 
 .cap_block {
-    padding: 1%;
     width: 15%;
     margin: auto;
+    text-align: center;
     background-color: rgb(103, 243, 145);
     font-size: 30px;
-    text-align: center;
-}
-
-label {
-    padding: 5px;
+    padding: 1%;
 }
 
 br {
@@ -54,4 +54,31 @@ br {
 
 .cap_label {
     text-decoration: underline;
+}
+
+@media (min-device-width:300px) and (max-device-width: 700px) {
+
+    .record_table {
+        width: 95%;
+        font-size: 35px;
+    }
+
+    th {
+        padding-left: 10px;
+        padding-right: 10px;
+        text-decoration: underline;
+    }
+
+    td {
+        padding-bottom: 1em;
+        padding-left: 10px;
+        padding-right: 10px;
+        text-align: center;
+    }
+
+    .cap_block {
+        width: 30%;
+        font-size: 50px;
+    }
+
 }
